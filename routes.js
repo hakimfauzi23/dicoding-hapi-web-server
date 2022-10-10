@@ -28,6 +28,23 @@ const routes = [
         },
     },
     {
+        method: 'GET',
+        path: '/hello/{name?}',
+        handler: (request, h) => {
+            const {name = "stranger"} = request.params;
+            const {lang} = request.query;
+
+            if(lang == 'id') {
+                return `Hai ${name}`;
+            }
+            if(lang == 'fn') {
+                return `Bonjour ${name}`;
+            }
+
+            return `Hello, ${name}!`;
+        }
+    },
+    {
         method: '*',
         path: '/{any*}',
         handler: (request, h) => {
